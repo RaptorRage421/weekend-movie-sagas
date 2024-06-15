@@ -1,4 +1,9 @@
+.movie-list {
+    display: flex;
+    justify-content: space-evenly;
+}
 .movies {
     display : flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }

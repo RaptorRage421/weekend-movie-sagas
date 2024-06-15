@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import MovieItem from '../MovieItem/MovieItem';
 import './MovieList.css';
 
 function MovieList() {
@@ -9,21 +10,19 @@ function MovieList() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
+    dispatch({ type: 'FETCH_GENRES' })
   }, []);
 
   return (
     <main>
       <h1>MovieList</h1>
+      <div className='movie-list'>
       <section className="movies">
-        {movies.map(movie => {
-          return (
-            <div data-testid='movieItem' key={movie.id}>
-              <h3>{movie.title}</h3>
-              <img src={movie.poster} alt={movie.title}/>
-            </div>
-          );
-        })}
+        {movies.map(movie => 
+          <MovieItem key={movie.id} movie={movie} />
+        )}
       </section>
+      </div>
     </main>
   );
 }
