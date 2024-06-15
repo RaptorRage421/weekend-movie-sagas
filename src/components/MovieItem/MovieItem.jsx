@@ -1,18 +1,23 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const MovieItem = ({movie}) => {
 const dispatch = useDispatch()
 
-const selectSingleMovie = (id) => {
-dispatch({type: 'FETCH_DETAILS', payload: id})
+const selectSingleMovie = () => {
+dispatch({type: 'FETCH_DETAILS', payload: movie.id})
 
 }
 
     return (
+       
         <div data-testid='movieItem' key={movie.id}>
           <h3>{movie.title}</h3>
-          <img onClick={() => selectSingleMovie(movie.id)} src={movie.poster} alt={movie.title}/>
+          <Link to={`/movies/${movie.id}`} onClick={selectSingleMovie}>
+          <img onClick={() => selectSingleMovie()} src={movie.poster} alt={movie.title}/>
+          </Link>
         </div>
+        
       );
 
 }

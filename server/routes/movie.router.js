@@ -17,6 +17,40 @@ router.get('/', (req, res) => {
     })
 
 });
+router.get('/:id', (req, res) => {
+  const movieId = req.params.id;
+ 
+
+  const query = `
+      SELECT
+    "movies"."id" AS "movie_id",
+    "movies"."title" AS "title",
+    "movies"."description" AS "description",
+    "movies"."poster" AS "poster",
+    jsonb_agg(jsonb_build_object('name', "genres"."name")) AS "genres"
+FROM
+    "movies"
+JOIN
+    "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
+JOIN
+    "genres" ON "movies_genres"."genre_id" = "genres"."id"
+WHERE
+    "movies"."id" = $1
+GROUP BY
+    "movies"."id";
+  `;
+
+  pool.query(query, [movieId])
+    .then(result => {
+      console.log("result.rows", result.rows)
+      res.send(result.rows); 
+
+    })
+    .catch(error => {
+      console.error('Error fetching movie details:', error);
+      res.status(500).send('Error fetching movie details');
+    });
+});
 
 router.post('/', (req, res) => {
   console.log(req.body);
