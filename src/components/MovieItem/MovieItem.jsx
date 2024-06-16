@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import Divider from '@mui/material/Divider'
+
 
 const MovieItem = ({movie}) => {
 const dispatch = useDispatch()
@@ -11,11 +13,15 @@ dispatch({type: 'FETCH_DETAILS', payload: movie.id})
 
     return (
        
-        <div data-testid='movieItem' key={movie.id}>
+        <div className="movie-item" data-testid='movieItem'>
           <h3>{movie.title}</h3>
-          <Link to={`/movies/${movie.id}`} onClick={selectSingleMovie}>
-          <img data-testid="toDetails" onClick={() => selectSingleMovie()} src={movie.poster} alt={movie.title}/>
+          <Divider variant="middle"/>
+          <div className="movie-item-center">
+          <Link to={`/details/${movie.id}`} onClick={selectSingleMovie}>
+          <img className="movie-poster" data-testid="toDetails" onClick={() => selectSingleMovie()} src={movie.poster} alt={movie.title}/>
           </Link>
+          </div>
+          
         </div>
         
       );

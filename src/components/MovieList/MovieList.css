@@ -1,9 +1,41 @@
 .movie-list {
     display: flex;
     justify-content: space-evenly;
+    ;
+    
 }
 .movies {
     display : flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    ;
+    
+    
+}
+.movie-item {
+    background: rgb(148,148,148);
+    background: linear-gradient(180deg, rgba(224, 224, 224, 0.4) 0%, rgba(174,174,240,0.6376925770308124) 52%, rgba(172, 233, 245, 0.666) 100%);
+    
+    border-radius: .5em;
+    height: 370px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2px;
+    margin: 4px;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.9); /* Example box-shadow */
+  
+}
+
+.movie-poster {
+    
+    max-width: 100%;
+}
+.movie-item-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
 }
