@@ -11,13 +11,22 @@ const MovieItemDetails = () => {
     dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movieId });
   }, [dispatch, movieId]);
 
+ 
+
+ 
+
   return (
     <div data-testid="movieDetails">
-      <h2>{movieDetails.title}</h2>
-      <p>{movieDetails.description}</p>
-      <img src={movieDetails.poster} alt={movieDetails.title} />
-      <p>Genres: {movieDetails.genres?.map(genre => genre.name).join(', ')}</p>
-    </div>
+        {console.log("movieDetails", movieDetails)}
+        <div>{movieDetails.title}</div>
+        <div><img src={movieDetails.poster}/></div>
+        <div>
+        {movieDetails.genres.map((genre) => 
+            <span>{genre.name}</span>
+        )}
+        </div>
+        <div>{movieDetails.description}</div>
+     </div>
   );
 };
 
