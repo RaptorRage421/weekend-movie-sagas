@@ -14,7 +14,7 @@ dispatch({type: 'FETCH_DETAILS', payload: movie.id})
         <div data-testid='movieItem' key={movie.id}>
           <h3>{movie.title}</h3>
           <Link to={`/movies/${movie.id}`} onClick={selectSingleMovie}>
-          <img onClick={() => selectSingleMovie()} src={movie.poster} alt={movie.title}/>
+          <img data-testid="toDetails" onClick={() => selectSingleMovie()} src={movie.poster} alt={movie.title}/>
           </Link>
         </div>
         
