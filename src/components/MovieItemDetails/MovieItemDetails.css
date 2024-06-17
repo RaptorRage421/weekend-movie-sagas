@@ -2,3 +2,9 @@
     display: flex;
     justify-content: center;
 }
+.movie-poster {
+    height: 300px; /* Adjust this value as needed */
+  }
+.centered {
+    justify-content: center;
+}

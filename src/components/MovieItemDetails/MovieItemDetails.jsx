@@ -3,61 +3,73 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./MovieItemDetails.css"
 
-
-
 const MovieItemDetails = () => {
   const dispatch = useDispatch();
   const movieDetails = useSelector((store) => store.movieDetails);
   const movieId = useParams();
-console.log(movieId.id)
+  console.log(movieId.id);
+
   useEffect(() => {
     dispatch({ type: 'FETCH_DETAILS', payload: movieId.id });
   }, [dispatch, movieId]);
 
- const history = useHistory()
+  const history = useHistory();
 
- const backToList = () => {
-    history.push('/')
- }
- if (!movieDetails || Object.keys(movieDetails).length === 0) {
-    return <div>Loading...</div>; // Handle loading state
+  const backToList = () => {
+    history.push('/');
+  }
+
+  if (!movieDetails || Object.keys(movieDetails).length === 0) {
+    return <div>Loading...</div>; 
+  }
+
+  
+  const formatGenres = () => {
+    if (movieDetails.genres.length === 1) {
+      return movieDetails.genres[0].name;
+    } else {
+      return movieDetails.genres.map((genre, index) => (
+        <span key={genre.id}>
+          {genre.name}
+          {index !== movieDetails.genres.length - 1 ? ', ' : ''}
+        </span>
+      ));
+    }
   }
 
   return (
     <div className="flex">
-    <Card raised="true" sx={{ maxWidth: 400 }} key={movieId} data-testid="movieDetails">
-       <CardMedia
-        component="img"
-        alt={movieDetails.title}
-        
-        image={movieDetails.poster}
-      />
-      <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-          {movieDetails.title}
-        </Typography>
-        <Typography>
-
-            Genres: {movieDetails.genres.map((genre) => 
-            <span key={genre.id}>{genre.name}</span>
-        )}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {movieDetails.description}
-        </Typography>
-        
-      </CardContent>
-        
-       <div><Button data-testid="toList" onClick={backToList}>Back</Button></div>
-     </Card>
-     </div>
+      <Card raised="true" sx={{ maxWidth: 400 , display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} key={movieId} data-testid="movieDetails">
+        <CardMedia
+          component="img"
+          alt={movieDetails.title}
+          image={movieDetails.poster}
+          className="movie-poster"
+          sx={{ width: '50%', height: 'auto' }}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h4" component="div">
+            {movieDetails.title}
+          </Typography>
+          <Typography>
+            Genres: {formatGenres()}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {movieDetails.description}
+          </Typography>
+        </CardContent>
+        <CardActions>
+        <Button data-testid="toList" variant="outlined" color="success"onClick={backToList}>Back</Button>
+        </CardActions>
+      </Card>
+    </div>
   );
 };
 
