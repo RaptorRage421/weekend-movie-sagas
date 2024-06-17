@@ -23,14 +23,17 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2px;
-    margin: 4px;
+    margin: 5px;
     box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.9); /* Example box-shadow */
   
 }
 
-.movie-poster {
+.movie-poster img{
+    margin: 10px;
+    max-width: 100%; /* Ensure the image does not exceed the width of its container */
+    max-height: 100%; /* Ensure the image does not exceed the height of its container */
+    object-fit: cover;
     
-    max-width: 100%;
 }
 .movie-item-center {
     display: flex;
@@ -38,4 +41,8 @@
     align-items: center;
     
     
+}
+
+img {
+    width: 150px;
 }

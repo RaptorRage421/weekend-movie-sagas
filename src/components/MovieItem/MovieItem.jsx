@@ -14,7 +14,7 @@ dispatch({type: 'FETCH_DETAILS', payload: movie.id})
     return (
        
         <div className="movie-item" data-testid='movieItem'>
-          <h3>{movie.title}</h3>
+          <h4>{movie.title}</h4>
           <Divider variant="middle"/>
           <div className="movie-item-center">
           <Link to={`/details/${movie.id}`} onClick={selectSingleMovie}>

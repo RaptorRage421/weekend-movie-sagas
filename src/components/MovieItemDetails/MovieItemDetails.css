@@ -2,9 +2,10 @@
     display: flex;
     justify-content: center;
 }
-.movie-poster {
-    height: 300px; /* Adjust this value as needed */
-  }
+
 .centered {
     justify-content: center;
+}
+.shadow {
+    box-shadow: -7px 8px 4px rgba(0, 0, 0, 1);
 }

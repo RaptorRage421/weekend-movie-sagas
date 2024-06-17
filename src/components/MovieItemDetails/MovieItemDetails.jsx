@@ -46,12 +46,11 @@ const MovieItemDetails = () => {
 
   return (
     <div className="flex">
-      <Card raised="true" sx={{ maxWidth: 400 , display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} key={movieId} data-testid="movieDetails">
+      <Card raised sx={{ maxWidth: 400 , display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }} key={movieId} data-testid="movieDetails">
         <CardMedia
           component="img"
           alt={movieDetails.title}
           image={movieDetails.poster}
-          className="movie-poster"
           sx={{ width: '50%', height: 'auto' }}
         />
         <CardContent>

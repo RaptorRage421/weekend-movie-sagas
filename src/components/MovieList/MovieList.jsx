@@ -16,6 +16,7 @@ function MovieList() {
     dispatch({ type: 'FETCH_MOVIES' });
     dispatch({ type: 'FETCH_GENRES' })
   }, [dispatch]);
+  
   if (!movies) {
     return <div>Loading...</div>;
   }
